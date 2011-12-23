@@ -7,7 +7,8 @@ define [
 ], (m, z) ->
 
     m.main = (ctx) ->
-        z ->
+        settings = ctx.web
+        z settings.domain, settings.port, ->
             @use 'bodyParser', 'methodOverride', @app.router, 'static'
 
             @configure

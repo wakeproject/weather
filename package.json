@@ -6,7 +6,7 @@
     "underscore": "latest",
     "underscore.string": "latest",
     "zappa": "latest",
-    "asyncblock": "latest"
+    "asyncblock": "latest",
     "redis": "latest"
   }
 }

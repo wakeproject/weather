@@ -3,11 +3,11 @@
 ###
 define [
   'exports'
+  'cs!./config/index'
   'cs!./scripts/web-server'
-], (m, w, c) ->
+], (m, c, w) ->
 
     m.main = (args...) ->
-        ctx = {}
-        w.main(ctx)
+        w.main(c)
 
     m
