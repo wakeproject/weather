@@ -2,5 +2,6 @@
   workers.coffee
 ###
 define ->
-    number: 2
+    tidy: 1
+    solver: 2
 

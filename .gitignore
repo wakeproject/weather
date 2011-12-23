@@ -9,5 +9,3 @@ Thumbs.db
 
 node_modules/*
 
-config/workers.coffee
-
