@@ -1,0 +1,208 @@
+body {
+    background-color: white;
+    color: black;
+    margin: 10px;
+}
+
+#time {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    width: 100px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+#lng {
+    position: absolute;
+    top: 60px;
+    left: 120px;
+    width: 90px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+#lat {
+    position: absolute;
+    top: 60px;
+    left: 220px;
+    width: 90px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+#msg {
+    position: absolute;
+    top: 60px;
+    left: 470px;
+    width: 200px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+#links {
+    position: absolute;
+    top: 60px;
+    left: 680px;
+}
+
+#orbit {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#twilight {
+    position: absolute;
+    top: 100px;
+    left: 84px;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#luminosity {
+    position: absolute;
+    top: 100px;
+    left: 158px;
+    width: 512px;
+    height: 64px;
+    overflow: hidden;
+    background-color: gray;
+}
+
+#atemp {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#density {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#pressure {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#stemp {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#vatemp {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#vdensity {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#vpressure {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#windx {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#windy {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#windz {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#vwindx {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#vwindy {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#vwindz {
+    position: absolute;
+    top: 174px;
+    left: 10px;
+    width: 660px;
+    height: 400px;
+    overflow: hidden;
+    background-color: black;
+}
+

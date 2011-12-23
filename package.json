@@ -1,0 +1,12 @@
+{
+  "name": "wahlque-weather",
+  "version": "0.0.0",
+  "dependencies": {
+    "camel": "latest",
+    "underscore": "latest",
+    "underscore.string": "latest",
+    "zappa": "latest",
+    "asyncblock": "latest"
+    "redis": "latest"
+  }
+}
