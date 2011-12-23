@@ -1,0 +1,6 @@
+###
+  workers.coffee
+###
+define ->
+    number: 2
+
