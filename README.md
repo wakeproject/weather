@@ -9,6 +9,7 @@ Please follow below steps:
  * install [git](http://git-scm.com/download)
  * cd SOMEDIRECTORY
  * git clone git://github.com/Wahlque/weather.git
+ * git submodule init
  * cd weather
  * npm install
  * ./sim
