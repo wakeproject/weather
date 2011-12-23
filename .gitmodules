@@ -1,0 +1,3 @@
+[submodule "lib/wahlque"]
+	path = lib/wahlque
+	url = git://github.com/Wahlque/wahlque.git
