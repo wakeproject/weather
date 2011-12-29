@@ -14,5 +14,5 @@ Please follow below steps:
  * npm install
  * ./sim
 
-Now you can access http://localhost:2012/ from  your browser.
+Now you can access http://localhost:2012/ from your browser.
 
