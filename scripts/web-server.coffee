@@ -3,7 +3,7 @@
 ###
 define [
   'exports'
-  'zappa'
+  'zappajs'
 ], (m, z) ->
 
     m.main = (ctx) ->

@@ -5,7 +5,7 @@
     "camel": "latest",
     "underscore": "latest",
     "underscore.string": "latest",
-    "zappa": "latest",
+    "zappajs": "latest",
     "asyncblock": "latest",
     "redis": "latest"
   }
