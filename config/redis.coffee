@@ -4,3 +4,4 @@
 define ->
     port: 6379
     host: 'localhost'
+    options: {}
