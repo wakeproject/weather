@@ -2,31 +2,15 @@ local cnfg = KEYS[1]
 local src  = KEYS[2]
 local trgt = KEYS[3]
 local cnst = ARGV[1]
+local part = ARGV[2]
 
-local dim  = redis.call('hget', cnfg, 'dim')
-local lyt  = {}
-local all  = 1
-for idx = 1, dim do
-    lyt[idx] = redis.call('hget', cnfg, 'lyt:' .. idx)
-    all = all * lyt[idx]
-end
+local dim = redis.call('hget', cnfg, 'dim')
+local key = cnfg .. ':partition:' .. part
+local affixes = redis.call('lrange', key, 0, -1)
 
-local ret = all
-
-while all ~= 0 do
-    local affix = ''
-    local base = 1
-    local total = all
-    for idx = dim, 1, -1 do
-        local lmt  = lyt[idx]
-        local reminder = total % lmt
-        total = (total - reminder) / lmt
-        if reminder == 0 then
-            reminder = lmt
-        end
-        affix = ':' .. reminder .. affix
-    end
-
+local len = #affixes
+for idx = 1, len do
+    local affix = affixes[idx]
     local key1 = src .. affix
     local key2 = trgt .. affix
 
@@ -36,7 +20,6 @@ while all ~= 0 do
         local result = opd[ind] * cnst
         redis.call('lpush', key2, result)
     end
-    all = all - 1
 end
 
-return ret
+return len
