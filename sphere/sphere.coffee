@@ -3,20 +3,21 @@
 ###
 define [
   'exports'
-  'cs!fields'
 ], (m, f) ->
 
-    m.field = (name, kind) ->
-        #TODO
-        abstract
-        concrete
-        proxy
-        proxy
-
-    m.bind = (variable, binding, dependencies) ->
+    m.local = (r, lambda, phi, F) ->
         #TODO
 
-    m.init = (variable, binding, dependencies) ->
+    m.grad = (S, T) ->
+        #TODO
+
+    m.div = (S, T) ->
+        #TODO
+
+    m.rot = (S, T) ->
+        #TODO
+
+    m.laplacian = (S, T) ->
         #TODO
 
     m
