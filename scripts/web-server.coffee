@@ -6,6 +6,25 @@ define [
   'zappajs'
 ], (m, z) ->
 
+    terrain = null
+    tworker = new Worker 'scripts/terrain-worker.coffee'
+    tworker.onmessage = (event) ->
+        data = event.data
+        if data.trn
+            terrain = data.trn
+    tworker.postMessage('start')
+
+    system = null
+    broadcast = null
+    sworker = new Worker 'scripts/system-worker.coffee'
+    sworker.onmessage = (event) ->
+        data = event.data
+        if data.sys
+            system = data.sys
+        if broadcast
+            broadcast({system: system})
+    sworker.postMessage('start')
+
     m.main = (ctx) ->
         settings = ctx.web
         z settings.domain, settings.port, ->
@@ -32,11 +51,13 @@ define [
             @get '/vwindy/:lng':    -> @render 'vwindy', @params.lng
             @get '/vwindz/:lng':    -> @render 'vwindz', @params.lng
 
-            @on connection: ->
-              @emit welcome: {time: new Date()}
+            @get '/terrain.jsonp': -> @jsonp terrain
 
-            @on shout: ->
-              @broadcast shout: {@id, text: @data.text}
+            @on connection: -> @emit begin: "begin"
+            @on start: ->
+                if not broadcast
+                    broadcast = (event) => @broadcast event
+
 
     m
 

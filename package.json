@@ -4,9 +4,7 @@
   "dependencies": {
     "camel": "latest",
     "underscore": "latest",
-    "underscore.string": "latest",
     "zappajs": "latest",
-    "asyncblock": "latest",
-    "redis": "latest"
+    "webworker": "latest"
   }
 }
