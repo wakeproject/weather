@@ -4,7 +4,7 @@ Wahlque Weather Simulation
 
 Please follow below steps:
 
- * install [nodejs](http://nodejs.org), please install version >= 0.6.6
+ * install [nodejs](http://nodejs.org), please install version >= 0.8.18
  * install [npm](http://npmjs.org)
  * install [git](http://git-scm.com/download)
  * cd SOMEDIRECTORY
