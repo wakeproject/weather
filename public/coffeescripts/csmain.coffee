@@ -20,6 +20,7 @@ define [
     $ = (selector) -> bonzo(qwery(selector))
 
     domReady ->
+        canvas = $('#world-global').get(0)
 
         map = null
         frame = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
@@ -44,11 +45,10 @@ define [
             $("#world-msg").html('Initializting the terrain data')
             true
 
-        changeframe = (e) ->
-            canvas = $('#world-global').get(0)
+        R = 270
+        coord = (e) ->
             width = canvas.width
             height = canvas.height
-
             x = y = 0
             if e.pageX || e.pageY
               x = e.pageX
@@ -60,22 +60,56 @@ define [
             y -= canvas.offsetTop
             x = x - width / 2
             y = y - height / 2
+            [x / R, y / R]
 
-            if x > 0
-                frame = rotater.left(frame, - x / width * 2)
+        changeframe = (dx, dy) ->
+            if dx > 0
+                frame = rotater.left(frame, - dx)
             else
-                frame = rotater.right(frame, x / width * 2)
+                frame = rotater.right(frame, dx)
 
-            if y > 0
-                frame = rotater.up(frame, y / height * 2)
+            if dy > 0
+                frame = rotater.up(frame, dy)
             else
-                frame = rotater.down(frame, - y / height * 2)
+                frame = rotater.down(frame, - dy)
+
+        inDrag = false
+        focus = null
+        dragBegin = (e) ->
+            [x, y] = coord(e)
+            if x * x + y * y < 1
+                focus = [x, y]
+                inDrag = true
+                canvas.css cursor: 'move'
+
+        dragEnd = (e) ->
+            inDrag = false
+            focus = null
+            canvas.css cursor: 'default'
+
+        drag = (e) ->
+            if inDrag
+                [x, y] = coord(e)
+                if x * x + y * y < 1
+                    dx = x - focus[0]
+                    dy = y - focus[1]
+                    changeframe dx, dy
+                else
+                    inDrag = false
+                    focus = null
+                    canvas.css cursor: 'default'
 
         bean.add(
             $('#world-btn').get(0), 'click', (-> invoke())
         )
         bean.add(
-            $('#world-global').get(0), 'click', changeframe
+            $('#world-global').get(0), 'mousedown', dragBegin
+        )
+        bean.add(
+            $('#world-global').get(0), 'mouseup mouseout click', dragEnd
+        )
+        bean.add(
+            $('#world-global').get(0), 'mousemove', drag
         )
 
        true
