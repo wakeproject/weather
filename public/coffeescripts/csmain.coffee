@@ -21,19 +21,17 @@ define [
 
     domReady ->
 
-        time = 0
-        lights = null
-        socket = io.connect()
         map = null
         frame = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+
+        socket = io.connect()
         socket.on "connect", ->
             socket.on "begin", -> socket.emit "start", null
             socket.on "system", (data) ->
-                time = data.time
-                lights = data.lights
-                $("#world-msg").html(time)
-                target = transformer.target(frame, lights, (time / planet.period))
-                viewer.paint(target, map) if target
+                $("#world-msg").html(data.time.toString())
+                target = transformer.target(frame, data.lights, (data.time / planet.period))
+                viewer.paint(target, map) if map
+                $("#world-msg").html("no map") if not map
             true
 
         invoke = ->

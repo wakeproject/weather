@@ -6,17 +6,18 @@
 define [
   'exports'
   'cs!../wahlque/physics/units/au'
+  'cs!../wahlque/physics/units/si'
   'cs!../wahlque/math/geometry/vector3'
   'cs!../wahlque/universe/wahlque/system'
   'cs!../wahlque/universe/wahlque/planet/planet'
-], (exports, au, vec3, system, planet) ->
+], (exports, au, si, vec3, system, planet) ->
     handle = 0
     tao = au.fromSI_T(planet.period / 30)
     start = ->
         evolve = ->
             system.step(tao)
             data =
-                time: system.time
+                time: si.fromAU_T(system.time)
                 positions:
                     [system.p1, system.p2, system.p3]
                 lights:
