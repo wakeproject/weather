@@ -18,9 +18,9 @@ define [
   'cs!/wahlque/universe/wahlque/planet/planet'
 ], (_, domReady, qwery, bonzo, bean, reqwest, io, rotater, transformer, viewer, planet) ->
     $ = (selector) -> bonzo(qwery(selector))
+    canvas = $('#world-global').get(0)
 
     domReady ->
-        canvas = $('#world-global').get(0)
 
         map = null
         frame = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
@@ -103,13 +103,13 @@ define [
             $('#world-btn').get(0), 'click', (-> invoke())
         )
         bean.add(
-            $('#world-global').get(0), 'mousedown', dragBegin
+            canvas, 'mousedown', dragBegin
         )
         bean.add(
-            $('#world-global').get(0), 'mouseup mouseout click', dragEnd
+            canvas, 'mouseup mouseout click', dragEnd
         )
         bean.add(
-            $('#world-global').get(0), 'mousemove', drag
+            canvas, 'mousemove', drag
         )
 
        true
