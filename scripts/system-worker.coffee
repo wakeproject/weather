@@ -12,7 +12,7 @@ define [
   'cs!../wahlque/universe/wahlque/planet/planet'
 ], (exports, au, si, vec3, system, planet) ->
     handle = 0
-    tao = au.fromSI_T(planet.period / 30)
+    tao = au.fromSI_T(planet.period / 3000)
     start = ->
         evolve = ->
             system.step(tao)
@@ -27,7 +27,6 @@ define [
         setInterval(evolve, 1000)
 
     self.onmessage = (e) ->
-        console.log("receive start")
         start()
         true
 

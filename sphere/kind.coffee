@@ -3,7 +3,7 @@
 ###
 define [
   'exports'
-], (m, f) ->
+], (m) ->
 
     m.scalar      =   0
     m.vector      =   1

@@ -8,7 +8,7 @@ body {
     position: absolute;
     top: 100px;
     left: 10px;
-    width: 640px;
+    width: 960px;
     height: 640px;
     overflow: hidden;
     background-color: black;
@@ -17,7 +17,7 @@ body {
 #world-orbit {
     position: absolute;
     top: 100px;
-    left: 660px;
+    left: 980px;
     width: 256px;
     height: 256px;
     overflow: hidden;
@@ -27,7 +27,7 @@ body {
 #world-msg {
     position: absolute;
     top: 360px;
-    left: 660px;
+    left: 9800px;
     width: 256px;
     height: 30px;
     overflow: hidden;
@@ -37,7 +37,7 @@ body {
 #world-btn {
     position: absolute;
     top: 400px;
-    left: 850px;
+    left: 1170px;
 }
 
 #orbit {

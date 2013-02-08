@@ -8,7 +8,8 @@ html ->
   body ->
     div id: 'main', ->
         h1 'Wahlque World'
-        canvas id: 'world-global'
+        div id : 'div-world-global', ->
+            canvas id: 'world-global'
         canvas id: 'world-orbit'
         button id: 'world-btn', type: 'button', -> 'Connect!'
         div id: 'world-msg'

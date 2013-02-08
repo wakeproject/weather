@@ -80,12 +80,12 @@ define [
             if x * x + y * y < 1
                 focus = [x, y]
                 inDrag = true
-                canvas.css cursor: 'move'
+                $("#div-world-global").css cursor: 'move'
 
         dragEnd = (e) ->
             inDrag = false
             focus = null
-            canvas.css cursor: 'default'
+            $("#div-world-global").css cursor: 'default'
 
         drag = (e) ->
             if inDrag
@@ -97,10 +97,10 @@ define [
                 else
                     inDrag = false
                     focus = null
-                    canvas.css cursor: 'default'
+                    $("#div-world-global").css cursor: 'default'
 
         bean.add(
-            $('#world-btn').get(0), 'click', (-> invoke())
+            $('#world-btn').get(0), 'click', invoke
         )
         bean.add(
             canvas, 'mousedown', dragBegin
