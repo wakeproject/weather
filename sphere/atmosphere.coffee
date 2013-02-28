@@ -4,21 +4,24 @@
 define [
   'exports'
   'cs!kind'
-  'cs!fields'
+  'cs!../wahlque/math/field/fields'
   'cs!sphere'
   'cs!../wahlque/universe/wahlque/planet/planet'
   'cs!../wahlque/math/geometry/vector3'
 ], (m, k, f, s, p, v3) ->
+
+    tao = 36
+    fields = f(s, tao)
 
     R = 287
     c_v = 718
 
     omega = 2 * Math.PI / p.period
 
-    m.p = f.tfld 'pressure', ['density', 'temperature'], (t, x, rho, T) ->
+    m.p = f.def 'pressure', ['density', 'temperature'], (t, x, rho, T) ->
         R * rho(t, x) * T(t, x)
 
-    m.V = f.tfld 'velocity', ['velocity', 'acceleration'], (t, x, V, dotV) ->
+    m.V = f.def 'velocity', ['velocity', 'acceleration'], (t, x, V, dotV) ->
         [r, lambda, phi] = x
         if t < tao
             s.local x, [2.5 * (Math.sin(6 * phi + r / 10000 * Math.PI / 2) - 1), 0, 0]
@@ -27,14 +30,14 @@ define [
                 V(t - tao, x),
                 v3.expand dotV(t - tao, x), tao
 
-    m.rho = f.tfld 'density', ['density', 'density-rate'], (t, x, rho, dotrho) ->
+    m.rho = f.def 'density', ['density', 'density-rate'], (t, x, rho, dotrho) ->
         [r, lambda, phi] = x
         if t < tao
             Math.exp(- r / 10000) * (1 - 0.05 * Math.cos(6 * lambda + r / 10000 * Math.PI / 2))
         else
             rho(t - tao, x) + tao * dotrho(t - tao, x)
 
-    m.T = f.tfld 'temperature', ['temperature', 'temperature-rate'], (t, x, T, dotT) ->
+    m.T = f.def 'temperature', ['temperature', 'temperature-rate'], (t, x, T, dotT) ->
         [r, lambda, phi] = x
         if t < tao
             278.15 - 0.006 * h - 80 * (1 - Math.cos(phi)) + 10 * Math.cos(lambda)
@@ -49,7 +52,7 @@ define [
             Math.cos(phi) * r * Math.cos(phi) * omega * omega - p.g
         ]
 
-    m.C = f.tfld 'corioplis', ['velocity'], (t, x, V) ->
+    m.C = f.def 'corioplis', ['velocity'], (t, x, V) ->
         [r, lambda, phi] = x
         Omega = s.local x, [
             0,
@@ -61,16 +64,16 @@ define [
             V(t, x)
         )
 
-    m.F = f.tfld 'viscosity', ['velocity', 'density'], (t, x, V, rho) ->
+    m.F = f.def 'viscosity', ['velocity', 'density'], (t, x, V, rho) ->
         [r, lambda, phi] = x
         nu = p.mu / rho(t, r, lambda, phi)
         v3.add
             (v3.expand s.laplacian(f.snapshot(t, V))(t, x, V(t, x), rho(t, x)), nu),
             (v3.expand s.grad(s.div(f.snapshot(t, V)))(t, x, V(t, x), rho(t, x)), nu / 3)
 
-    m.Q = f.tfld 'heat', [], (t, r, lambda, phi) -> 0 #TODO
+    m.Q = f.def 'heat', [], (t, r, lambda, phi) -> 0 #TODO
 
-    m.dotV = f.tfld 'acceleration', ['gravity','density', 'pressure', 'corioplis', 'viscosity'], (t, x, g, rho, p, C, F) ->
+    m.dotV = f.def 'acceleration', ['gravity','density', 'pressure', 'corioplis', 'viscosity'], (t, x, g, rho, p, C, F) ->
         [r, lambda, phi] = x
         v3.add
              (g t, x),
@@ -78,10 +81,10 @@ define [
              (C t, x),
              (F t, x)
 
-    m.dotrho = f.tfld 'density-rate', ['velocity','density'], (t, x, V, rho) ->
+    m.dotrho = f.def 'density-rate', ['velocity','density'], (t, x, V, rho) ->
         - rho(t, x) * s.div(f.snapshot(t, V))
 
-    m.dotT = f.tfld 'temperature-rate', ['velocity', 'heat'], (t, x, V, Q) ->
+    m.dotT = f.def 'temperature-rate', ['velocity', 'heat'], (t, x, V, Q) ->
         (Q(t, x) - R * T(t, x) * s.div(f.snapshot(t, V))) / c_v
 
 

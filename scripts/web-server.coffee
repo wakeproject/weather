@@ -16,7 +16,7 @@ define [
 
     system = null
     broadcast = null
-    sworker = new Worker 'scripts/system-worker.coffee'
+    sworker = new Worker 'scripts/celestial-worker.coffee'
     sworker.onmessage = (event) ->
         data = event.data
         if data.sys
